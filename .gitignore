@@ -1,0 +1,81 @@
+# Vivado/XSim generated files
+.Xil/
+hardware/soc/.Xil/
+hardware/soc/build*/
+hardware/build/
+hardware/sim/xsim.dir/
+hardware/sim/work/
+hardware/sim/*.log
+hardware/sim/*.jou
+hardware/sim/*.pb
+hardware/sim/*.wdb
+hardware/sim/vectors.mem
+hardware/.Xil/
+hardware/soc/output_portable/sim_regression/xsim.dir/
+hardware/soc/output_portable/dma_regression/xsim.dir/
+hardware/soc/output_portable/review_scheduler/xsim.dir/
+
+# Native software build output and generated third-party test artifacts
+software/**/build/
+third_party/slhdsa-c/*.obj
+third_party/slhdsa-c/*.exe
+third_party/slhdsa-c/test/.acvp-data/
+
+# Local editor/OS files
+.vs/
+.vscode/
+Thumbs.db
+Desktop.ini
+
+# Source-only GitHub publication: keep local archives and user data private.
+/archive/
+/demo_chay_thu/
+*.slsk
+*.slpk
+*.slsig
+*.slkh
+*.pem
+*.pfx
+*.p12
+*.key
+.env
+.env.*
+!.env.example
+**/.git/
+
+# Generated hardware products are rebuilt locally, not committed.
+/hardware/output*/
+/hardware/soc/output*/
+/hardware/boards/vc707/optional_ddr3/
+/hardware/soc/firmware/*.mem
+**/dfx_runtime.txt
+*.bit
+*.dcp
+*.xpr
+*.jou
+*.log
+*.wdb
+*.pb
+**/xsim.dir/
+**/.Xil/
+
+# Compilers and Python caches
+*.bin
+*.elf
+*.exe
+*.dll
+*.obj
+*.o
+*.a
+*.lib
+*.pdb
+*.ilk
+*.exp
+*.pyc
+**/__pycache__/
+
+# Personal academic reports and rendered document previews stay local.
+/docs/_*/
+/docs/*.docx
+/docs/*.pptx
+/docs/*.pdf

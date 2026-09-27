@@ -1,0 +1,246 @@
+{
+  "purpose": "Path-only reorganization; preserve source bytes and accepted bitstream. Old path names are historical, not active dependencies.",
+  "files": [
+    {
+      "from": "RTL-20260907T024349Z-1-001/RTL/priority_encoder.v",
+      "to": "hardware/rtl/axi/priority_encoder.v"
+    },
+    {
+      "from": "RTL-20260907T024349Z-1-001/RTL/arbiter.v",
+      "to": "hardware/rtl/axi/arbiter.v"
+    },
+    {
+      "from": "RTL-20260907T024349Z-1-001/RTL/axi_crossbar_addr.v",
+      "to": "hardware/rtl/axi/axi_crossbar_addr.v"
+    },
+    {
+      "from": "RTL-20260907T024349Z-1-001/RTL/axi_crossbar_rd.v",
+      "to": "hardware/rtl/axi/axi_crossbar_rd.v"
+    },
+    {
+      "from": "RTL-20260907T024349Z-1-001/RTL/axi_crossbar_wr.v",
+      "to": "hardware/rtl/axi/axi_crossbar_wr.v"
+    },
+    {
+      "from": "RTL-20260907T024349Z-1-001/RTL/axi_crossbar.v",
+      "to": "hardware/rtl/axi/axi_crossbar.v"
+    },
+    {
+      "from": "RTL-20260907T024349Z-1-001/RTL/axi_register_rd.v",
+      "to": "hardware/rtl/axi/axi_register_rd.v"
+    },
+    {
+      "from": "RTL-20260907T024349Z-1-001/RTL/axi_register_wr.v",
+      "to": "hardware/rtl/axi/axi_register_wr.v"
+    },
+    {
+      "from": "RTL-20260907T024349Z-1-001/RTL/axi_interconnect.v",
+      "to": "hardware/rtl/axi/axi_interconnect.v"
+    },
+    {
+      "from": "RTL-20260907T024349Z-1-001/RTL/axi_ram.v",
+      "to": "hardware/rtl/axi/axi_ram.v"
+    },
+    {
+      "from": "RTL-20260907T024349Z-1-001/RTL/axi_interconnect_2x4_top.v",
+      "to": "hardware/rtl/axi/axi_interconnect_2x4_top.v"
+    },
+    {
+      "from": "Project_Vivado/src/AXI/priority_encoder.v",
+      "to": "hardware/rtl/axi/test_models/priority_encoder.v"
+    },
+    {
+      "from": "Project_Vivado/src/AXI/arbiter.v",
+      "to": "hardware/rtl/axi/test_models/arbiter.v"
+    },
+    {
+      "from": "Project_Vivado/src/AXI/axi_crossbar_addr.v",
+      "to": "hardware/rtl/axi/test_models/axi_crossbar_addr.v"
+    },
+    {
+      "from": "Project_Vivado/src/AXI/axi_crossbar_rd.v",
+      "to": "hardware/rtl/axi/test_models/axi_crossbar_rd.v"
+    },
+    {
+      "from": "Project_Vivado/src/AXI/axi_crossbar_wr.v",
+      "to": "hardware/rtl/axi/test_models/axi_crossbar_wr.v"
+    },
+    {
+      "from": "Project_Vivado/src/AXI/axi_crossbar.v",
+      "to": "hardware/rtl/axi/test_models/axi_crossbar.v"
+    },
+    {
+      "from": "Project_Vivado/src/AXI/axi_register_rd.v",
+      "to": "hardware/rtl/axi/test_models/axi_register_rd.v"
+    },
+    {
+      "from": "Project_Vivado/src/AXI/axi_register_wr.v",
+      "to": "hardware/rtl/axi/test_models/axi_register_wr.v"
+    },
+    {
+      "from": "Project_Vivado/src/AXI/axi_ram.v",
+      "to": "hardware/rtl/axi/test_models/axi_ram.v"
+    },
+    {
+      "from": "picorv32-main/picorv32.v",
+      "to": "hardware/rtl/cpu/picorv32.v"
+    },
+    {
+      "from": "picorv32-main/COPYING",
+      "to": "hardware/rtl/cpu/COPYING"
+    },
+    {
+      "from": "picorv32-main/firmware/makehex.py",
+      "to": "hardware/rtl/cpu/tools/makehex.py"
+    },
+    {
+      "from": "Project_Vivado/src/DMA/dma_axil_regs.sv",
+      "to": "hardware/rtl/dma/dma_axil_regs.sv"
+    },
+    {
+      "from": "Project_Vivado/src/DMA/dma_access_controller.sv",
+      "to": "hardware/rtl/dma/dma_access_controller.sv"
+    },
+    {
+      "from": "Project_Vivado/src/DMA/dma_descriptor_fifo.sv",
+      "to": "hardware/rtl/dma/dma_descriptor_fifo.sv"
+    },
+    {
+      "from": "Project_Vivado/src/DMA/dma_completion_fifo.sv",
+      "to": "hardware/rtl/dma/dma_completion_fifo.sv"
+    },
+    {
+      "from": "Project_Vivado/src/DMA/dma_axi_scheduler.sv",
+      "to": "hardware/rtl/dma/dma_axi_scheduler.sv"
+    },
+    {
+      "from": "Project_Vivado/src/DMA/axi_cdma.v",
+      "to": "hardware/rtl/dma/axi_cdma.v"
+    },
+    {
+      "from": "Project_Vivado/src/DMA/axi_dma_rd.v",
+      "to": "hardware/rtl/dma/axi_dma_rd.v"
+    },
+    {
+      "from": "Project_Vivado/src/DMA/axi_dma_wr.v",
+      "to": "hardware/rtl/dma/axi_dma_wr.v"
+    },
+    {
+      "from": "Project_Vivado/src/SoC/dma_mmu_axi_top.sv",
+      "to": "hardware/rtl/dma/dma_mmu_axi_top.sv"
+    },
+    {
+      "from": "Project_Vivado/src/IOMMU/pseudoLRU.sv",
+      "to": "hardware/rtl/iommu/pseudoLRU.sv"
+    },
+    {
+      "from": "Project_Vivado/src/IOMMU/dma_iommu_tlb.sv",
+      "to": "hardware/rtl/iommu/dma_iommu_tlb.sv"
+    },
+    {
+      "from": "hardware/rtl/core/keccak_round.v",
+      "to": "hardware/rtl/sphincs_shake256/keccak_round.v"
+    },
+    {
+      "from": "hardware/rtl/core/keccak_f1600.v",
+      "to": "hardware/rtl/sphincs_shake256/keccak_f1600.v"
+    },
+    {
+      "from": "hardware/rtl/core/shake256_block_engine.v",
+      "to": "hardware/rtl/sphincs_shake256/shake256_block_engine.v"
+    },
+    {
+      "from": "hardware/rtl/sphincs/spx_thash_shake256_simple_256.v",
+      "to": "hardware/rtl/sphincs_shake256/spx_thash_shake256_simple_256.v"
+    },
+    {
+      "from": "hardware/rtl/ip/slh_dsa_shake_axi_lite.v",
+      "to": "hardware/rtl/sphincs_shake256/slh_dsa_shake_axi_lite.v"
+    },
+    {
+      "from": "hardware/soc/rtl/slh_dma_stream_adapter.v",
+      "to": "hardware/rtl/sphincs_shake256/slh_dma_stream_adapter.v"
+    },
+    {
+      "from": "hardware/soc/rtl/soc_uart.v",
+      "to": "hardware/rtl/peripherals/soc_uart.v"
+    },
+    {
+      "from": "hardware/soc/rtl/soc_timer_gpio.v",
+      "to": "hardware/rtl/peripherals/soc_timer_gpio.v"
+    },
+    {
+      "from": "hardware/soc/rtl/portable_slh_soc_core.v",
+      "to": "hardware/rtl/soc/portable_slh_soc_core.v"
+    },
+    {
+      "from": "hardware/soc/rtl/picorv32_slh_soc.v",
+      "to": "hardware/rtl/soc/picorv32_slh_soc.v"
+    },
+    {
+      "from": "hardware/soc/rtl/axi_slh_peripherals.v",
+      "to": "hardware/rtl/soc/axi_slh_peripherals.v"
+    },
+    {
+      "from": "hardware/soc/rtl/dma_axi_mem_router.v",
+      "to": "hardware/rtl/axi/dma_axi_mem_router.v"
+    },
+    {
+      "from": "hardware/soc/rtl/vc707_portable_wrapper.v",
+      "to": "hardware/boards/vc707/rtl/vc707_portable_wrapper.v"
+    },
+    {
+      "from": "hardware/soc/rtl/vc707_picorv32_slh_soc.v",
+      "to": "hardware/boards/vc707/rtl/vc707_picorv32_slh_soc.v"
+    },
+    {
+      "from": "hardware/soc/rtl/vc707_picorv32_slh_soc_ddr.v",
+      "to": "hardware/boards/vc707/rtl/vc707_picorv32_slh_soc_ddr.v"
+    },
+    {
+      "from": "hardware/rtl/board/vc707_sphincs_shake256_selftest.v",
+      "to": "hardware/boards/vc707/rtl/vc707_sphincs_shake256_selftest.v"
+    },
+    {
+      "from": "Project_Vivado/src/SoC/vc707_axi_ddr3_bridge.sv",
+      "to": "hardware/boards/vc707/rtl/vc707_axi_ddr3_bridge.sv"
+    },
+    {
+      "from": "hardware/soc/constraints/vc707_portable.xdc",
+      "to": "hardware/boards/vc707/constraints/vc707_portable.xdc"
+    },
+    {
+      "from": "hardware/soc/constraints/vc707_soc.xdc",
+      "to": "hardware/boards/vc707/constraints/vc707_soc.xdc"
+    },
+    {
+      "from": "hardware/soc/constraints/vc707_soc_ddr.xdc",
+      "to": "hardware/boards/vc707/constraints/vc707_soc_ddr.xdc"
+    },
+    {
+      "from": "hardware/constraints/vc707.xdc",
+      "to": "hardware/boards/vc707/constraints/vc707_shake_selftest.xdc"
+    },
+    {
+      "from": "Project_Vivado/testbench/tb_dma_mmu_axi_top.sv",
+      "to": "hardware/soc/sim/dma/tb_dma_mmu_axi_top.sv"
+    }
+  ],
+  "extraFiles": [
+    { "from": "Project_Vivado/ip/vc707_ddr3/vc707_ddr3_1gb_axi.xml", "to": "hardware/boards/vc707/optional_ddr3/vc707_ddr3_1gb_axi.xml" }
+  ],
+  "directories": [
+    {
+      "from": "Project_Vivado/ip/vc707_ddr3/vc707_ddr3_mig",
+      "to": "hardware/boards/vc707/optional_ddr3/vc707_ddr3_mig"
+    },
+    {
+      "from": "Project_Vivado/ip/vc707_ddr3/vc707_axi_clock_converter",
+      "to": "hardware/boards/vc707/optional_ddr3/vc707_axi_clock_converter"
+    },
+    {
+      "from": "Project_Vivado/ip/vc707_ddr3/vc707_axi_dwidth_converter",
+      "to": "hardware/boards/vc707/optional_ddr3/vc707_axi_dwidth_converter"
+    }
+  ]
+}
