@@ -16,6 +16,7 @@ if($LASTEXITCODE) { throw 'Container mutation regression failed' }
 & (Join-Path $signer 'test_write_failure.cmd')
 if($LASTEXITCODE) { throw 'Exclusive file-write cleanup failed' }
 & (Join-Path $PSScriptRoot 'test_scheduler_review.ps1')
+& (Join-Path $PSScriptRoot 'test_dma_matrix.ps1')
 if($VerifyNistProvenance) {
     python (Join-Path $signer 'verify_acvp_sources.py')
     if($LASTEXITCODE) { throw 'Pinned NIST fixture identity check failed' }

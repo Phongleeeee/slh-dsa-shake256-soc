@@ -2,9 +2,11 @@
 
 module tb_dma_mmu_axi_top #(
     parameter bit AUTO_FINISH = 1'b1,
-    parameter LOG_PATH = "C:/rtl/rtl/Project_Vivado/reports/dma_mmu_axi_test.log",
-    parameter PERF_LOG_PATH = "C:/rtl/rtl/Project_Vivado/reports/dma_throughput.log",
-    parameter EDGE_LOG_PATH = "C:/rtl/rtl/Project_Vivado/reports/dma_edge_cases.log"
+    parameter integer STREAM_CAPTURE_WORDS = 32,
+    parameter integer DMA_POLL_LIMIT = 5000,
+    parameter LOG_PATH = "dma_mmu_axi_test.log",
+    parameter PERF_LOG_PATH = "dma_throughput.log",
+    parameter EDGE_LOG_PATH = "dma_edge_cases.log"
 ) (
     output logic test_done_o,
     output logic test_pass_o
@@ -181,7 +183,7 @@ module tb_dma_mmu_axi_top #(
     integer max_arlen;
     integer transparent_blocked_cycles;
     logic transparent_pattern_enable;
-    logic [31:0] stream_out [0:31];
+    logic [31:0] stream_out [0:STREAM_CAPTURE_WORDS-1];
     integer stream_out_count;
     integer stream_out_last_count;
     integer cfg_start_pulse_count;
@@ -747,11 +749,11 @@ module tb_dma_mmu_axi_top #(
             axil_write(8'h00, 32'h0000_0001);
             status = 0;
             timeout = 0;
-            while (!status[1] && !status[2] && timeout < 5000) begin
+            while (!status[1] && !status[2] && timeout < DMA_POLL_LIMIT) begin
                 axil_read(8'h04, status);
                 timeout = timeout + 1;
             end
-            if (timeout >= 5000)
+            if (timeout >= DMA_POLL_LIMIT)
                 fail("DMA timeout");
             final_status = status;
         end
@@ -824,11 +826,11 @@ module tb_dma_mmu_axi_top #(
         begin
             poll_status = 0;
             timeout = 0;
-            while (!poll_status[1] && !poll_status[2] && timeout < 5000) begin
+            while (!poll_status[1] && !poll_status[2] && timeout < DMA_POLL_LIMIT) begin
                 axil_read(8'h04, poll_status);
                 timeout = timeout + 1;
             end
-            if (timeout >= 5000)
+            if (timeout >= DMA_POLL_LIMIT)
                 fail("DMA timeout");
             final_status = poll_status;
         end

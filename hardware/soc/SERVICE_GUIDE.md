@@ -1,6 +1,6 @@
 # Bản nâng cấp 5 hướng: dịch vụ ký số portable SLH3
 
-Ngày 27/09/2026. Cấu hình chính: **SLH-DSA-SHAKE-256f**, RAM nội bộ,
+Ngày 28/09/2026. Cấu hình chính: **SLH-DSA-SHAKE-256f**, RAM nội bộ,
 PicoRV32 + AXI + DMA/IOMMU + accelerator SHAKE. Không cần DDR3.
 Đọc cùng [biên bản kiểm chứng](ACCEPTANCE.md).
 
@@ -34,8 +34,8 @@ test chạy firmware RV32 thật, kiểm tra 23 response và kết thúc khoản
 thời gian mô phỏng. Đây vẫn chưa phải bài tạo khóa/ký đầy đủ.
 Dùng `scripts/test_soc.ps1` để chạy đủ 9 testbench.
 
-Clock toàn hệ thống sau rà soát **296,296296 MHz**, WNS 0,000 ns,
-WHS +0,067 ns, timing đạt, DRC mặc định/bitstream 0 vi phạm.
+Clock toàn hệ thống sau sửa DMA **296,296296 MHz**, WNS +0,001 ns,
+WHS +0,055 ns, timing đạt, DRC mặc định/bitstream 0 vi phạm.
 Clock tăng 7,407% so với 275,862069 MHz; setup đang sát biên, chưa có xác
 nhận ổn định trên board thật. Timing này chỉ áp dụng part VC707 hiện tại.
 Kiểm tra đúng cặp bitstream/firmware đã nghiệm thu bằng

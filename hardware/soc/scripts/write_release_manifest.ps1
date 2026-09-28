@@ -30,13 +30,19 @@ $paths += Join-Path $rootDir 'hardware/rtl/cpu/tools/makehex.py'
 foreach($relative in @('firmware/slh_dsa_portable.bin','firmware/slh_dsa_portable.elf',
         'output_portable/portable_slh_soc_vc707.bit','output_portable/portable_soc_routed.dcp',
         'output_portable/timing_summary.rpt','output_portable/utilization.rpt',
+        'output_portable/critical_paths.rpt','output_portable/ip_timing/summary.csv',
         'output_portable/drc.rpt','output_portable/bitstream_drc.rpt','output_portable/methodology.rpt',
-        'output_portable/review_soc_final.log','output_portable/review_dma.log',
-        'output_portable/review_aggregate_final.log','output_portable/review_acvp_provenance.json',
-        'output_portable/reorganization_soc_tests.log','output_portable/reorganization_dma_tests.log',
-        'output_portable/reorganization_scheduler_tests.log','output_portable/reorganization_shake_tests.log',
-        'output_portable/reorganization_project_console.log','output_portable/reorganization_ip_package.log',
-        'output_portable/reorganization_integrity.log')) {
+        'output_portable/dma_audit_20260928_soc_final.log',
+        'output_portable/dma_audit_20260928_baseline_final.log',
+        'output_portable/dma_audit_20260928_review_final.log',
+        'output_portable/dma_audit_20260928_shake_final.log',
+        'output_portable/dma_audit_20260928_build.log',
+        'output_portable/dma_audit_20260928_artifact_check.log',
+        'output_portable/dma_audit_20260928_project_promote.log',
+        'output_portable/dma_matrix_review/dma_matrix_review.log',
+        'output_portable/dma_matrix_review/dma_fifo_review.log',
+        'output_portable/dma_matrix_review/matrix_cases.csv',
+        'output_portable/review_acvp_provenance.json')) {
     $paths += Join-Path $socDir $relative
 }
 $paths += Join-Path $rootDir 'software/sphincs_signer/build/slh_dsa_shake_256f.exe'

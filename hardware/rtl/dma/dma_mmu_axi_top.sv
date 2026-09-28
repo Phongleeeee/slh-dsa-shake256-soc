@@ -688,6 +688,9 @@ module dma_mmu_axi_top #(
     wire rd_desc_ready;
     wire [3:0] rd_status_error;
     wire rd_status_valid;
+    logic rd_status_pending_q, rd_output_drained_q;
+    logic [3:0] rd_status_error_q;
+    wire rd_scheduler_status_valid = rd_status_pending_q && rd_output_drained_q;
     logic rd_last_chunk;
 
     logic [AXI_ADDR_WIDTH-1:0] wr_desc_addr;
@@ -739,8 +742,8 @@ module dma_mmu_axi_top #(
         .axis_rd_desc_len_o(rd_desc_len),
         .axis_rd_desc_valid_o(rd_desc_valid),
         .axis_rd_desc_ready_i(rd_desc_ready),
-        .axis_rd_status_error_i(rd_status_error),
-        .axis_rd_status_valid_i(rd_status_valid),
+        .axis_rd_status_error_i(rd_status_error_q),
+        .axis_rd_status_valid_i(rd_scheduler_status_valid),
         .axis_rd_last_chunk_o(rd_last_chunk),
         .axis_wr_desc_addr_o(wr_desc_addr),
         .axis_wr_desc_len_o(wr_desc_len),
@@ -969,6 +972,30 @@ module dma_mmu_axi_top #(
         .m_axi_bresp(d_bresp), .m_axi_bvalid(d_bvalid),
         .m_axi_bready(d_bready), .enable(1'b1), .abort(1'b0)
     );
+
+    // The engine's status means AXI reads have reached its output FIFO, not
+    // that the peripheral accepted them. Retire each descriptor only after
+    // BOTH status and its final AXIS handshake. Otherwise DONE/queue launch
+    // can overtake a stalled packet and reset the command TLAST byte counter.
+    // Register both events: no combinational TREADY -> completion path.
+    always_ff @(posedge aclk or negedge aresetn) begin
+        if (!aresetn) begin
+            rd_status_pending_q <= 1'b0;
+            rd_output_drained_q <= 1'b0;
+            rd_status_error_q <= 4'd0;
+        end else begin
+            if (rd_scheduler_status_valid || (rd_desc_valid && rd_desc_ready)) begin
+                rd_status_pending_q <= 1'b0;
+                rd_output_drained_q <= 1'b0;
+            end
+            if (rd_status_valid) begin
+                rd_status_pending_q <= 1'b1;
+                rd_status_error_q <= rd_status_error;
+            end
+            if (rd_tvalid && rd_tready && rd_tlast)
+                rd_output_drained_q <= 1'b1;
+        end
+    end
 
     // The read engine can complete its descriptor status before all buffered
     // AXI-Stream beats leave its output FIFO.  Therefore TLAST is generated

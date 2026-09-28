@@ -22,9 +22,11 @@ Xem [nguồn gốc và giấy phép thành phần](THIRD_PARTY_NOTICES.md).
 
 Bản mới có backend **FPGA UART**, firmware dịch vụ SLH3, DMA → SHAKE,
 benchmark ba mode và vault chặn DMA. Bản rà soát đạt **296,296 MHz**
-post-route, setup sát biên 0,000 ns; chưa đo ổn định trên kit thật.
+post-route, WNS +0,001 ns và WHS +0,055 ns sau sửa DMA ngày 28/09;
+setup vẫn rất sát biên, chưa đo ổn định trên kit thật.
 Xem [hướng dẫn sử dụng mới](hardware/soc/SERVICE_GUIDE.md) và
 [báo cáo rà soát/test/đối chiếu NIST](docs/RA_SOAT_KIEM_CHUNG_2026-09-27.md).
+Đợt mới nhất: [ma trận 9 tổ hợp DMA và hai lỗi đã sửa](docs/RA_SOAT_DMA_2026-09-28.md).
 Mở app bằng `MO_PHAN_MEM_SLH_DSA.cmd`; backend Windows và FPGA tách rõ.
 
 Build và kiểm tra SoC portable:
@@ -34,6 +36,7 @@ cd C:\SHAKE256
 ./hardware/soc/scripts/build_portable_soc.ps1
 ./hardware/soc/scripts/test_soc.ps1
 ./hardware/soc/scripts/test_portable_dma.ps1
+./hardware/soc/scripts/test_dma_matrix.ps1
 ```
 
 Mở đúng project Vivado chính:

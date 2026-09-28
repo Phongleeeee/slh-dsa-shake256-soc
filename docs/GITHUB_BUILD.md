@@ -89,7 +89,7 @@ FIPS hoặc kết quả keygen/sign/verify trên FPGA.
 - Bitstream sau build thành công:
   `hardware/soc/output_portable/portable_slh_soc_vc707.bit`.
 - Build mặc định yêu cầu 296,296296 MHz. Phải đọc báo cáo timing mới của lần
-  build; kết quả lịch sử WNS 0,000 ns đã sát biên và không bảo đảm mọi lần
+  build; bản sửa DMA 28/09 có WNS +0,001 ns rất sát biên và không bảo đảm mọi lần
   build đều đạt. Chưa có xác nhận ổn định thực tế trên kit.
 
 IP SHAKE đóng gói riêng có thể tạo lại bằng

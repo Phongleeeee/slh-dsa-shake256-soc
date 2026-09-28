@@ -2,7 +2,7 @@
 $ErrorActionPreference='Stop'
 $socDir=Split-Path $PSScriptRoot -Parent
 $expected=@{
-    'output_portable\portable_slh_soc_vc707.bit'='5A4A7141CE0CD8CCB08B63852720DEE289C95118EC46A67EBE46DBC95C2B6C6A'
+    'output_portable\portable_slh_soc_vc707.bit'='B4169BE8EB061DD4EE81DC47413F861CD57D80D4F4838280EA8129F97027F4F0'
     'firmware\slh_dsa_portable.bin'='0829A5F52211569E1B21972C3437082CBDB01935CEA8904A653749C2C0E7C2AD'
 }
 foreach($relative in $expected.Keys) {
@@ -35,5 +35,5 @@ if(-not $row.Success -or $timing -notmatch 'All user specified timing constraint
    [int]$row.Groups['setup'].Value -ne 0 -or [int]$row.Groups['hold'].Value -ne 0) {
     throw 'Published timing report does not pass setup/hold.'
 }
-Write-Host "ACCEPTED RELEASE IDENTIFICATION PASS: 296.296296 MHz (setup at boundary), WNS=$($row.Groups['wns'].Value) ns, WHS=$($row.Groups['whs'].Value) ns"
+Write-Host "ACCEPTED RELEASE IDENTIFICATION PASS: 296.296296 MHz (very small setup margin), WNS=$($row.Groups['wns'].Value) ns, WHS=$($row.Groups['whs'].Value) ns"
 Write-Host 'This is not FPGA keygen/sign/verify acceptance, entropy qualification or a cryptographic release signature.'

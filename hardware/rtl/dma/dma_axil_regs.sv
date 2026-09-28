@@ -384,8 +384,10 @@ module dma_axil_regs #(
                     REG_PT_FLAGS: begin
                         pt_flags_reg_q <= merge_wstrb(pt_flags_reg_q,
                                                      wdata_q, wstrb_q);
-                        // Writing PT_FLAGS commits the entry.
-                        pt_write_o <= 1'b1;
+                        // Only the byte containing VALID/R/W commits an
+                        // entry. A null or upper-byte-only write must not
+                        // program the staged VPN/PPN or invalidate the TLB.
+                        pt_write_o <= wstrb_q[0];
                     end
                     REG_TLB_CTRL: begin
                         if (wstrb_q[0] && wdata_q[0])

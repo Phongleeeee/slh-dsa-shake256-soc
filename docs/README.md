@@ -7,6 +7,8 @@
 - `CAU_TRUC_THU_MUC.md`: tìm mã AXI/CPU/DMA/IOMMU/SHAKE, project và bitstream.
 - `path_migration_20260927.json`: bản đồ đường dẫn cũ → mới của đợt sắp xếp.
 - `RA_SOAT_KIEM_CHUNG_2026-09-27.md`: lỗi đã sửa, kiểm thử và đối chiếu NIST.
+- `RA_SOAT_DMA_2026-09-28.md`: ma trận 9 tổ hợp DMA, hai lỗi mới đã sửa,
+  hàng đợi, backpressure, lỗi bus, phục hồi và timing của bitstream mới.
 - `DE_TAI_SPHINCS_SHAKE256.md`: phạm vi và trạng thái kỹ thuật hiện tại.
 - `PRODUCT_STATUS.md`: mức hoàn thiện sản phẩm, giới hạn và lộ trình tiếp theo.
 - `SHAKE256_BaoCao_HoanChinh.docx`: báo cáo SHAKE256 của giai đoạn trước.

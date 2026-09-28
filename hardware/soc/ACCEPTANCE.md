@@ -1,12 +1,13 @@
 # Kiểm chứng SoC portable SLH-DSA-SHAKE-256f
 
-Ngày: **27/09/2026**. Công cụ: Vivado/XSim 2025.1.
+Ngày: **28/09/2026**. Công cụ: Vivado/XSim 2025.1.
 Thiết bị triển khai: **xc7vx485tffg1761-2 (VC707)**.
 
 **Cập nhật bố cục:** source đã di chuyển theo [bản đồ thư mục](../../docs/CAU_TRUC_THU_MUC.md).
-RTL/XDC sản xuất, firmware binary, checkpoint và bitstream được giữ nguyên
-nội dung so với bản đạt timing dưới đây. Không tuyên bố có một lần route mới
-chỉ vì đổi vị trí source; đường dẫn project chính và bitstream không đổi.
+Đợt 28/09 đã sửa hai lỗi DMA và thực hiện một lần synthesis/route mới.
+Đường dẫn project chính và bitstream không đổi; bản cũ được giữ tại
+`output_portable/releases/pre_dma_fix_20260928`. Firmware binary không đổi.
+Chi tiết lỗi và ma trận kiểm tra: [báo cáo DMA](../../docs/RA_SOAT_DMA_2026-09-28.md).
 
 ## Kết quả timing của toàn hệ thống
 
@@ -14,16 +15,16 @@ chỉ vì đổi vị trí source; đường dẫn project chính và bitstream 
 |---|---:|
 | Clock SoC | **296,296296 MHz** |
 | Chu kỳ clock | 3,375 ns |
-| Setup WNS | **0,000 ns (sát biên)** |
+| Setup WNS | **+0,001 ns (rất sát biên)** |
 | Setup TNS / endpoint vi phạm | 0 ns / 0 |
-| Hold WHS | **+0,067 ns** |
+| Hold WHS | **+0,055 ns** |
 | Hold THS / endpoint vi phạm | 0 ns / 0 |
 | Pulse-width slack / vi phạm | +0,919 ns / 0 |
 | Register không có clock | 0 |
 | Endpoint nội bộ thiếu ràng buộc | 0 |
 | DRC ruledeck mặc định | **0 vi phạm** |
 | DRC bitstream_checks (đọc lại checkpoint phát hành) | **0 vi phạm** |
-| LUT / flip-flop | 16.715 / 17.679 |
+| LUT / flip-flop | 16.731 / 17.682 |
 | RAMB36 / DSP | 48 / 0 |
 
 CPU, AXI, RAM0/1/2, DMA/IOMMU, SHAKE256, UART và timer/GPIO **đều dùng
@@ -36,27 +37,28 @@ này**, không phải khẳng định giới hạn vật lý tuyệt đối hay 
 đều đạt cùng tốc độ. Các bản 250 và 266,667 MHz trước đó được giữ trong
 `output_portable/releases` để đối chiếu; source/bitstream chính là bản hiện tại.
 
-Tăng **7,407%** so với baseline 275,862069 MHz. Setup margin làm tròn đến
-độ phân giải báo cáo là **0 ps**, không còn dự phòng đáng kể. Đây là cấu hình
+Giữ nguyên clock của bản 27/09, cao hơn **7,407%** so với baseline
+275,862069 MHz. Setup margin theo độ phân giải báo cáo chỉ **1 ps**,
+không có dự phòng đáng kể. Đây là cấu hình
 hiệu năng sát biên cho đồ án, chưa phải xác nhận ổn định trên board thật.
 Không tự tăng clock; nếu cần margin lớn hơn phải build/kiểm tra lại ở clock
-thấp hơn. Đường tới hạn hiện tại nằm trong IOMMU:
-`req_vaddr_q_reg[17]` → `match_pt_index_q_reg[3]`.
+thấp hơn. Đường tới hạn hiện tại nằm trong CDMA:
+`write_addr_reg_reg[1]` → `write_addr_reg_reg[31]`.
 Fmax không đồng nghĩa với tốc độ ký: chưa đo chữ ký/giây trên board.
 
 ### Timing từng khối trong SoC
 
 | Khối | Clock đã đạt (MHz) | Setup slack (ns) |
 |---|---:|---:|
-| PicoRV32 | 296,296 | +0,152 |
-| AXI fabric | 296,296 | +0,102 |
-| RAM0 / RAM1 / RAM2 | 296,296 | +0,148 / +0,153 / +0,120 |
-| SHAKE AXI F/H | 296,296 | +0,088 |
-| SHAKE core / Keccak | 296,296 | +0,204 / +0,204 |
-| DMA/IOMMU | 296,296 | 0,000 |
-| IOMMU riêng | 296,296 | 0,000 |
-| UART | 296,296 | +0,297 |
-| Timer/GPIO | 296,296 | +0,462 |
+| PicoRV32 | 296,296 | +0,062 |
+| AXI fabric | 296,296 | +0,022 |
+| RAM0 / RAM1 / RAM2 | 296,296 | +0,002 / +0,145 / +0,169 |
+| SHAKE AXI F/H | 296,296 | +0,078 |
+| SHAKE core / Keccak | 296,296 | +0,078 / +0,078 |
+| DMA/IOMMU | 296,296 | +0,001 |
+| IOMMU riêng | 296,296 | +0,177 |
+| UART | 296,296 | +0,044 |
+| Timer/GPIO | 296,296 | +0,321 |
 
 Các scope bao gồm đường vào từ khối khác. Cột `estimated_limit_mhz` trong
 CSV chỉ là ngoại suy từ slack của placement hiện tại, **không phải Fmax OOC
@@ -65,8 +67,8 @@ CSV chỉ là ngoại suy từ slack của placement hiện tại, **không ph�
 ## Kiến trúc đã hoàn thành
 
 Bản nâng cấp dịch vụ UART/DMA/vault và hướng dẫn sử dụng đầy đủ:
-[SERVICE_GUIDE.md](SERVICE_GUIDE.md). Bản rà soát tăng từ 275,862 lên
-**296,296 MHz**, thêm 27 LUT và 2 FF so với baseline ngay trước rà soát;
+[SERVICE_GUIDE.md](SERVICE_GUIDE.md). Bản sửa DMA giữ **296,296 MHz**,
+thêm 16 LUT và 3 FF so với bản 27/09;
 không thêm BRAM hoặc DSP. Firmware: text **24.240 byte**, data **4 byte**,
 BSS **69.048 byte** (không cộng nhầm BSS vào kích thước ảnh boot).
 
@@ -112,6 +114,9 @@ RAM XPM và công cụ build; không chỉ đổi chân.
 | Ảnh firmware C thật: startup và DMA RAM roundtrip | PASS |
 | DMA/IOMMU: M2M/S2M/M2S, backpressure, quyền, lỗi AXI, descriptor, reset | PASS |
 | Kiểm tra snapshot DMA đầy đủ | 39 lần PASS |
+| Ma trận DMA 9 tổ hợp, gồm phục hồi | 456 lệnh hợp lệ PASS, 129.738 word đối chiếu |
+| Cấu hình/quyền sai và lỗi AXI | 51 ca từ chối + 48 ca lỗi bus/phục hồi PASS |
+| FIFO descriptor/completion depth 4 và 8 | 80.000 lượt mô hình độc lập PASS |
 | Adapter DMA → SHAKE F/H, backpressure, framing lỗi, abort, reset và scrub | PASS |
 | IOMMU secure-local: chặn vault/stack/boot/MMIO và alias vật lý | PASS |
 | Firmware RV32 thật gọi DMA F known-answer | PASS |
@@ -129,7 +134,9 @@ RAM XPM và công cụ build; không chỉ đổi chân.
 Log nằm trong `output_portable/sim_regression` và
 `output_portable/dma_regression`. Mô phỏng là kiểm tra chức năng RTL, không
 phải đo Fmax: tốc độ được xác nhận riêng bằng timing post-route bên trên.
-Hồi quy SoC hiện có **9 testbench đều PASS** trong `review_soc_final.log`.
+Hồi quy SoC hiện có **9 testbench đều PASS** trong
+`dma_audit_20260928_soc_final.log`; tổng hợp phần mềm/RTL trong
+`dma_audit_20260928_review_final.log`.
 Firmware đã sửa linker `.sdata/.sbss` và dọn payload trước cached reply:
 không trả response rồi tiếp tục scrub khiến request tiếp theo tràn UART.
 
@@ -148,6 +155,7 @@ Từ PowerShell tại `C:\SHAKE256`:
 .\open_vivado.ps1
 .\hardware\soc\scripts\test_soc.ps1
 .\hardware\soc\scripts\test_portable_dma.ps1
+.\hardware\soc\scripts\test_dma_matrix.ps1
 # Chỉ cần lệnh dưới nếu muốn build lại toàn bộ:
 .\hardware\soc\scripts\build_portable_soc.ps1
 # Rà soát mở rộng (native/RTL; không giả lập kết quả board):
@@ -165,7 +173,7 @@ Từ PowerShell tại `C:\SHAKE256`:
   đến UART `DMA F/H STREAM KAT PASS` rồi dừng. Boot KAT kiểm tra F;
   testbench adapter độc lập kiểm tra cả F và H.
 - Build script dừng run project ở routing rồi finalize checkpoint và xuất
-  bitstream riêng; nếu GUI báo bước post-route chưa chạy, mở checkpoint
+  bitstream riêng; nếu GUI báo Out-of-date hoặc bước post-route chưa chạy, mở checkpoint
   nghiệm thu bằng **File → Checkpoint → Open** để xem implementation cuối.
 - Nạp bitstream bằng Hardware Manager; mở COM 115200, 8N1, reset board.
   LED0 = firmware PASS, LED1 = FAIL, LED4 = CPU trap, LED5 = AXI error.
@@ -191,7 +199,7 @@ hoặc sản phẩm chữ ký số thương mại đã chứng nhận.
 ## Nhận diện đúng ảnh build
 
 SHA-256 bitstream:
-`5A4A7141CE0CD8CCB08B63852720DEE289C95118EC46A67EBE46DBC95C2B6C6A`.
+`B4169BE8EB061DD4EE81DC47413F861CD57D80D4F4838280EA8129F97027F4F0`.
 
 SHA-256 firmware binary:
 `0829A5F52211569E1B21972C3437082CBDB01935CEA8904A653749C2C0E7C2AD`.

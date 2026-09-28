@@ -1,5 +1,12 @@
 # Bản đồ hệ thống sau sắp xếp — 27/09/2026
 
+Cập nhật 28/09: bố cục và đường dẫn chính không đổi, nhưng RTL DMA và
+bitstream đã được sửa/build lại. Các số hash/nguyên byte bên dưới chỉ mô tả
+đợt **di chuyển ngày 27/09**, không áp dụng cho sửa chức năng sau đó. Xem
+[báo cáo DMA mới](RA_SOAT_DMA_2026-09-28.md). `check_layout_integrity.ps1`
+so sánh baseline lịch sử sẽ báo khác byte sau sửa có chủ đích; dùng
+`hardware/soc/scripts/verify_service_release.ps1` để nhận diện bản hiện tại.
+
 ## 1. Tìm mã ở đâu?
 
 ```text

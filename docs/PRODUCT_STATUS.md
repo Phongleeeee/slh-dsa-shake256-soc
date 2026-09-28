@@ -1,6 +1,6 @@
 # Trạng thái sản phẩm mẫu SLH-DSA-SHAKE-256f
 
-## Cấu hình SoC chính hiện tại (27/09/2026)
+## Cấu hình SoC chính hiện tại (28/09/2026)
 
 `portable_slh_soc_core.v` chứa PicoRV32, AXI, DMA/IOMMU, SHAKE256 F/H,
 UART, timer/GPIO và 192 KiB RAM nội bộ. `vc707_portable_wrapper.v` chỉ
@@ -9,9 +9,13 @@ bản mở rộng bộ nhớ ngoài vẫn được giữ riêng để tham khả
 
 Project chính: `hardware/soc/build_portable/portable_slh_soc.xpr`.
 Xem [trạng thái kiểm chứng và cách build](../hardware/soc/PORTABLE_SOC.md).
-Toàn SoC portable nâng cấp đạt post-route **296,296 MHz**, WNS 0,000 ns
-(sát biên), WHS +0,067 ns; [biên bản kiểm chứng](../hardware/soc/ACCEPTANCE.md).
+Toàn SoC portable sau sửa DMA đạt post-route **296,296 MHz**, WNS +0,001 ns
+(rất sát biên), WHS +0,055 ns; [biên bản kiểm chứng](../hardware/soc/ACCEPTANCE.md).
 Các số Fmax OOC bên dưới thuộc IP độc lập, không phải toàn SoC.
+
+[Rà soát DMA 28/09/2026](RA_SOAT_DMA_2026-09-28.md): sửa DONE đến sớm
+ở M2S và commit bảng trang sai khi WSTRB=0; 9/9 tổ hợp, 456 lệnh hợp lệ,
+51 lệnh bị từ chối, 48 lỗi bus/phục hồi và 80.000 lượt mô hình FIFO PASS.
 
 [Rà soát mở rộng 27/09/2026](RA_SOAT_KIEM_CHUNG_2026-09-27.md): sửa 6 lỗi,
 đối chiếu NIST, thêm test biên/framing/abort/thu hồi quyền và parser file.
